@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>Stock Market</title>
+
+{% endblock title %}
+
+
+{% block content %} 
+
+{% include 'core/nav.html' with title='Stock Market' op='Cancer Prediction' op1='Wine Quality' %}
+
+<div class="mt-4 row container ">
+    <div class="col-sm-8 ">
+        <i><h5 class="text-dark mt-5 element">Someone is sitting in the shade today because someone planted a tree a long time ago. <b class="text-primary">"Warren Buffett"</b></h5></i>
+    </div>
+    <div class="col-sm-4 text-center">
+        <img src="{% static 'stockPrice/img/y.jpg' %}" alt="" class="img-fluid mt-3 ">
+    </div>
+</div>
+
+<div class="container">
+    <a href="" class="btn btn-outline-info">Start prediction</a>
+</div>
+
+<div class="container mt-3" >
+    <h4 id='company' class="text-dark bg-info" style='padding: 20px;'>Apple Inc. (AAPL) </h4>
+    <select name="comp" id="comp" class="form-control">
+        <option value="TSLA">Tesla, Inc. (TSLA)</option>
+        <option value="MSFT">Microsoft Corporation (MSFT)</option>
+        <option value="GOOGL">Alphabet, Inc. (GOOGL)</option>
+        <option value="JPM">JPMorgan Chase & Co.</option>
+        <option value="BAC">Bank of America Corporation</option>
+        <option value="HDB">HDFC Bank Limited</option>
+        <option value="IBN">ICICI Bank Limited</option>
+        <option value="FB">Meta Platforms, Inc.</option>
+        <option value="TCEHY">Tencent Holdings Ltd.</option>
+        <option value="SONY">Sony Group Corporation.</option>
+        <option value="TM">Toyota Motor Corporation</option>
+        <option value="TTM">Tata Motors Ltd.</option>
+        <option value="F">Ford Motor Company</option>
+        <option value="HMC">Honda Motor Company, Ltd.</option>
+        <option value="JNJ">Johnson & Johnson</option>
+        <option value="LLy">Eli Lilly and Company</option>
+        <option value="WMT">Walmart, Inc.</option>
+        <option value="AMZN">Amazon.com, Inc.</option>
+        <option value="BABA">Alibaba Group Holding Ltd</option>
+        <option value="PEP">PepsiCo, Inc.</option>
+        <option value="NVDA">NVIDIA Corporation</option>
+        <option value="TSM">Taiwan Semiconductor Manufacturing </option>
+        <option value="INTC">Intel Corporation </option>
+        <option value="VRTX">Vertex Pharmaceuticals, Inc. </option>
+        <option value="RY">Royal Bank of Canada </option>
+        <option selected value="AAPL">Apple Inc. (AAPL)</option>
+    </select>
+
+    <input type="text" class="form-control mt-2" id='userinput' placeholder="Enter the equity symbol eg:TTM">
+    <button class="btn btn-outline-info mt-3 dosearch">Search</button>
+</div>
+
+
+<div class="container mt-2 result">
+
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'stockPrice/js/stock.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+    var typed = new Typed('.element', {
+        strings: ["It's better to hang out with people better than you. Pick out associates whose behavior is better than yours and you'll drift in that direction.","Should you find yourself in a chronically leaking boat, energy devoted to changing vessels is likely to be more productive than energy devoted to patching leaks. ~<b class='text-primary'>'Warren Buffett'</b>","It's better to hang out with people better than you. Pick out associates whose behavior is better than yours and you'll drift in that direction. ~<b class='text-primary'>'Warren Buffet'</b>",`Someone is sitting in the shade today because someone planted a tree a long time ago. <b class="text-primary">"Warren Buffett"</b>`],
+        typeSpeed: 20,
+  
+     
+        backSpeed: 30,
+        
+        loop: true,
+      });
+      
+</script>
+{% endblock script %}
