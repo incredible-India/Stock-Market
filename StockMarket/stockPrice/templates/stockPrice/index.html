@@ -11,12 +11,14 @@
 
 {% include 'core/nav.html' with title='Stock Market' op='Cancer Prediction' op1='Wine Quality' %}
 
-<div class="mt-4 row container ">
-    <div class="col-sm-8 ">
-        <i><h5 class="text-dark mt-5 element">Someone is sitting in the shade today because someone planted a tree a long time ago. <b class="text-primary">"Warren Buffett"</b></h5></i>
-    </div>
-    <div class="col-sm-4 text-center">
-        <img src="{% static 'stockPrice/img/y.jpg' %}" alt="" class="img-fluid mt-3 ">
+<div class="container">
+    <div class="mt-4 row  ">
+        <div class="col-sm-8 ">
+            <i><h5 class="text-dark mt-5 element">Someone is sitting in the shade today because someone planted a tree a long time ago. <b class="text-primary">"Warren Buffett"</b></h5></i>
+        </div>
+        <div class="col-sm-4 text-center">
+            <img src="{% static 'stockPrice/img/y.jpg' %}" alt="" class="img-fluid mt-3 ">
+        </div>
     </div>
 </div>
 
@@ -63,6 +65,168 @@
 <div class="container mt-2 result">
 
 </div>
+
+
+<div class="container bse mt-3">
+
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{% static 'stockPrice/img/bse.jpg' %}" alt="" class="img-fluid mt-3 " style="width:450px; height:350px">
+        </div>
+
+        <div class="col-sm-8">
+            <h4 class="text-dark bg-info mt-2" style='padding: 20px;'>Bombay Stock Exchange </h4>
+            <h5 class="text-dark text-center mt-1">
+               
+                BSE Limited, also known as the Bombay Stock Exchange, is an Indian stock exchange located on Dalal Street in Mumbai. Established in 1875 by cotton merchant Premchand Roychand, a Rajasthani Jain businessman, it is the oldest stock exchange in Asia, and also the tenth oldest in the world.
+            </h5>
+
+            <div class="mt-2 alert-info" style='padding: 20px;'>Top Active Companies Listed In BSE</div>
+
+            <div class="mt-2">
+                <table class="table table-striped">
+                    <thead class="bg-info">
+                      <tr>
+                        <th scope="col">
+                            Security Code</th>
+                        <th scope="col">Issuer Name</th>
+                        <th scope="col">Security Id</th>
+                        <th scope="col">Face Value</th>
+                        <th scope="col">Group</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">500002</th>
+                        <td>ABB India Limited</td>
+                        <td>ABB</td>
+                        <td>2.00</td>
+                        <td>A</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">500003</th>
+                        <td>Aegis Logistics Ltd.</td>
+                        <td>AEGISLOG</td>
+                        <td>1.00</td>
+                        <td>A</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">500008</th>
+                        <td>Amara Raja Batteries Ltd</td>
+                        <td>AMARAJABAT</td>
+                        <td>1.00</td>
+                        <td>A</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="mt-2">
+                <a href="./../../static/stockPrice/datasets/Equity.csv" class="btn btn-outline-info">Download List</a>
+               
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% comment %} nse {% endcomment %}
+
+<div class="container bse mt-3">
+
+    <div class="row">
+   
+        <div class="col-sm-8">
+            <h4 class="text-dark bg-info mt-2" style='padding: 20px;'>National Stock Exchange </h4>
+            <h5 class="text-dark text-center mt-1">
+               
+                National Stock Exchange of India Limited is the leading stock exchange of India, located in Mumbai, Maharashtra. It is the world’s largest derivatives exchange in 2021 by number of contracts traded based on the statistics maintained by Futures Industry Association, a derivatives trade body.
+            </h5>
+
+            <div class="mt-2 alert-info" style='padding: 20px;'>Top Active Companies Listed In NSE</div>
+
+            <div class="mt-2">
+                <table class="table table-striped">
+                    <thead class="bg-info">
+                      <tr>
+                        <th scope="col">
+                            SYMBOL</th>
+                        <th scope="col">NAME OF COMPANY</th>
+                        <th scope="col"> SERIES</th>
+                        <th scope="col">Face Value</th>
+                        <th scope="col"> ISIN NUMBER</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">20MICRONS</th>
+                        <td>20 Microns Limited</td>
+                        <td>EQ</td>
+                        <td>5.00</td>
+                        <td>INE144J01027</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">21STCENMGM</th>
+                        <td>21st Century Management Services Limited</td>
+                        <td>EQ</td>
+                        <td>10.00</td>
+                        <td>INE253B01015</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3IINFOLTD</th>
+                        <td>3i Infotech Limited</td>
+                        <td>EQ</td>
+                        <td>10.00</td>
+                        <td>INE748C01038</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="mt-2">
+                <a href="./../../static/stockPrice/datasets/nseList.csv" class="btn btn-outline-info">Download List</a>
+               
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <img src="{% static 'stockPrice/img/nse.jpg' %}" alt="" class="img-fluid mt-3 " style="width:450px; height:350px">
+        </div>
+
+    </div>
+
+</div>
+
+{% comment %} other services {% endcomment %}
+<div class="container mt-3">
+    <h4 class="text-dark bg-info mt-2" style='padding: 20px;'>Other Services </h4>
+
+    <div class="row mt-3">
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'stockPrice/img/b.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"> Breast Cancer</h5>
+                  <p class="card-text">Breast cancer can occur in women and rarely in men.
+                    Symptoms of breast cancer include a lump in the breast.</p>
+                  <a href="#" class="btn btn-info">Check </a>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{% static 'stockPrice/img/w.jpg' %}" alt="Card image cap" style=" height:185px">
+                <div class="card-body">
+                  <h5 class="card-title">Wine Quality</h5>
+                  <p class="card-text">The five components – acidity, tannins, sugar/sweetness, alcohol and fruit – need to be balanced.</p>
+                  <a href="#" class="btn btn-info">Check </a>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+{% comment %} footer {% endcomment %}
+{% include 'core/footer.html' %}
 {% endblock content %}
 
 {% block script %}

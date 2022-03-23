@@ -28,7 +28,7 @@ function showResult(maindata) {
     {
         document.getElementsByClassName('result')[0].innerHTML=''
         document.getElementsByClassName('result')[0].innerHTML = `<table class="table table-striped ">
-        <thead>
+        <thead class='bg-info'>
           <tr>
             <th scope="col">Day</th>
             <th scope="col">trading volume </th>
@@ -170,3 +170,4 @@ document.getElementsByClassName('dosearch')[0].addEventListener('click',async()=
 
    
 })
+
