@@ -9,7 +9,7 @@
 
 {% block content %} 
 
-{% include 'core/nav.html' with title='Stock Market' op='Cancer Prediction' op1='Wine Quality' %}
+{% include 'core/nav.html' with title='Stock Market' op='Cancer Prediction' op1='Wine Quality' opl='/cancer' %}
 
 <div class="container">
     <div class="mt-4 row  ">
@@ -207,7 +207,7 @@
                   <h5 class="card-title"> Breast Cancer</h5>
                   <p class="card-text">Breast cancer can occur in women and rarely in men.
                     Symptoms of breast cancer include a lump in the breast.</p>
-                  <a href="#" class="btn btn-info">Check </a>
+                  <a href="{% url 'cancer' %}" class="btn btn-info">Check </a>
                 </div>
               </div>
         </div>

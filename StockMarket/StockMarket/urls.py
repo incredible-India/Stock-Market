@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from stockPrice import views as sp
+from wineAndcancer import views as wc
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', sp.index,name='Stock-home'),
+    # routin for cancer prediction 
+    path('cancer/',wc.cancerPrediction.as_view(), name='cancer')
 ]

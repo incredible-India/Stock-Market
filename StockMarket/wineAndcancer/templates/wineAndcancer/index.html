@@ -1,0 +1,409 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>Cancer Prediction</title>
+
+{% endblock title %}
+
+{% block content %}
+
+{% include 'core/nav.html' with title='Cancer Prediction' op='Market Prediction' op1='Wine Quality' opl='/' %}
+
+
+<div class="container mt-2">
+
+          <img src="{% static 'wineAndcancer/img/op.png' %}" alt="" class="img-fluid mt-3 " style="width:100%; height:250px; " > 
+       
+</div>
+
+<div class="container mt-1">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 class="tetx-dark bg-info" style='padding:20px;'>Breast cancer</h3>
+            <h4 class=" text-dark" style='font-style:italic;'>
+                A cancer that forms in the cells of the breasts.
+<span class="text-info">Breast cancer</span> can occur in women and rarely in men.
+Symptoms of breast cancer include a lump in the breast, bloody discharge from the nipple and changes in the shape or texture of the nipple or breast.
+Its treatment depends on the stage of cancer. It may consist of chemotherapy, radiation, hormone therapy and surgery.
+            </h4>
+        </div>
+
+        <div class="col-sm-6">
+            <h3 class="tetx-dark bg-info" style='padding:20px;'>Symptoms of Breast Cancer</h3>
+            <h4 class=" text-dark d4" style='font-style:italic;'>
+               <ul>
+                   <li>New lump in the breast or underarm (armpit).</li>
+                   <li>Thickening or swelling of part of the breast.</li>
+                   <li>Irritation or dimpling of breast skin</li>
+                   <li>Redness or flaky skin in the nipple area or the breast.</li>
+                   <li>Pulling in of the nipple or pain in the nipple area.</li>
+                   <li>Nipple discharge other than breast milk, including blood.</li>
+               </ul>
+             
+            </h4>
+            <a href="https://www.cdc.gov/cancer/breast/basic_info/symptoms.htm" class="mt-1 text-info" style="text-decoration: none;" target="_blank">More Information</a>
+        </div>
+    </div>
+</div>
+
+
+{% comment %} info about datasets {% endcomment %}
+
+<div class="container mt-2">
+   <div class="row mt-1">
+    <h4 class="text-dark bg-info" style='padding:20px;'>Breast cancer wisconsin (diagnostic) dataset</h4>
+       <div class="col-sm-6">
+      
+        <h5 class="text-dark mt-header">Attribute Information</h5>
+    
+        <ul>
+            <li>radius (mean of distances from center to points on the perimeter)</li>
+            <li>texture (standard deviation of gray-scale values)</li>
+            <li>perimeter</li>
+            <li>area</li>
+            <li>smoothness (local variation in radius lengths)</li>
+            <li>compactness (perimeter^2 / area - 1.0)</li>
+            <li>concavity (severity of concave portions of the contour)</li>
+            <li>concave points (number of concave portions of the contour)</li>
+            <li>symmetry</li>
+            <li>fractal dimension ("coastline approximation" - 1)</li>
+        </ul>
+       </div>
+       <div class="col-sm-6">
+           <p class="text-dark">
+            The mean, standard error, and "worst" or largest (mean of the three
+            worst/largest values) of these features were computed for each image,
+            resulting in 30 features.  For instance, field 0 is Mean Radius, field
+            10 is Radius SE, field 20 is Worst Radius.
+           </p>
+       </div>
+   </div>
+</div>
+
+<div class="container mt-1">
+  <p class="text-dark"> <b> Fill the following data to check for Braest Cancer. You can take help from the table shown bellow.</b> <a href="#showdata" class="text-info" style='text-decoration: none;'>(See Data)</a></p>
+  <div class="container mt-2">
+    <form action="" method="post">
+    <div class="row mt-1">
+     
+      <div class="col-sm-4">
+        <label for="mean_radius">mean radius</label>
+        <input type="number" name="mean_radius" id="mean_radius" class="form-control">
+        <label for="mean_texture">mean texture</label>
+        <input type="number" name="mean_texture" id="mean_texture" class="form-control">
+        <label for="mean_perimeter">mean perimeter</label>
+        <input type="number" name="mean_perimeter" id="mean_perimeter" class="form-control">
+        <label for="mean_area">mean area</label>
+        <input type="number" name="mean_area" id="mean_area" class="form-control">
+        <label for="mean_smoothness">mean smoothness</label>
+        <input type="number" name="mean_smoothness" id="mean_smoothness" class="form-control">
+        <label for="mean_compactness">mean compactness</label>
+        <input type="number" name="mean_compactness" id="mean_compactness" class="form-control">
+        <label for="mean_concavity">mean concavity</label>
+        <input type="number" name="mean_concavity" id="mean_concavity" class="form-control">
+        <label for="mean_concave_points">mean concave points</label>
+        <input type="number" name="mean_concave_points" id="mean_concave_points" class="form-control">
+        <label for="mean_symmetry">mean symmetry</label>
+        <input type="number" name="mean_symmetry" id="mean_symmetry" class="form-control">
+        <label for="mean_fractal_dimension">mean fractal dimension</label>
+        <input type="number" name="mean_fractal_dimension" id="mean_fractal_dimension" class="form-control">
+
+
+      </div>
+
+      <div class="col-sm-4">
+        <label for="radius_error">radius error</label>
+        <input type="number" name="radius_error" id="radius_error" class="form-control">
+        <label for="texture_error">texture error</label>
+        <input type="number" name="texture_error" id="texture_error" class="form-control">
+        <label for="perimeter_error">perimeter error</label>
+        <input type="number" name="perimeter_error" id="perimeter_error" class="form-control">
+        <label for="area_error">area error</label>
+        <input type="number" name="area_error" id="area_error" class="form-control">
+        <label for="smoothness_error">smoothness error</label>
+        <input type="number" name="smoothness_error" id="smoothness_error" class="form-control">
+        <label for="compactness_error">compactness error</label>
+        <input type="number" name="compactness_error" id="compactness_error" class="form-control">
+        <label for="concavity_error">concavity error</label>
+        <input type="number" name="concavity_error" id="concavity_error" class="form-control">
+        <label for="concave_points_error">concave points error</label>
+        <input type="number" name="concave_points_error" id="concave_points_error" class="form-control">
+        <label for="symmetry_error">symmetry error</label>
+        <input type="number" name="symmetry_error" id="symmetry_error" class="form-control">
+        <label for="fractal_dimension_error">fractal dimension error</label>
+        <input type="number" name="fractal_dimension_error" id="fractal_dimension_error" class="form-control">
+
+
+      </div>
+
+      <div class="col-sm-4">
+        <label for="worst_radius">worst radius</label>
+        <input type="number" name="worst_radius" id="worst_radius" class="form-control">
+        <label for="worst_texture">worst texture</label>
+        <input type="number" name="worst_texture" id="worst_texture" class="form-control">
+        <label for="worst_perimeter">worst perimeter</label>
+        <input type="number" name="worst_perimeter" id="worst_perimeter" class="form-control">
+        <label for="worst_area">worst area</label>
+        <input type="number" name="worst_area" id="worst_area" class="form-control">
+        <label for="worst_smoothness">worst smoothness</label>
+        <input type="number" name="worst_smoothness" id="worst_smoothness" class="form-control">
+        <label for="worst_compactness">worst compactness</label>
+        <input type="number" name="worst_compactness" id="worst_compactness" class="form-control">
+        <label for="worst_concavity">worst concavity</label>
+        <input type="number" name="worst_concavity" id="worst_concavity" class="form-control">
+        <label for="worst_concave_points">worst concave points</label>
+        <input type="number" name="worst_concave_points" id="worst_concave_points" class="form-control">
+        <label for="worst_symmetry">worst symmetry</label>
+        <input type="number" name="worst_symmetry" id="worst_symmetry" class="form-control">
+        <label for="worst_fractal_dimension">worst fractal dimension</label>
+        <input type="number" name="worst_fractal_dimension" id="worst_fractal_dimension" class="form-control">
+
+
+      </div>
+
+      <div class="container mt-2">
+        <hr class="text-info">
+        <input type="submit" value="Submit" class="btn btn-outline-info">
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<div class="container mt-2">
+  <a name='showdata'></a>
+    <h4 class="text-dark">
+        Summary Statistics
+    </h4>
+
+    <table class="table table-striped">
+        <thead class="bg-info">
+          <tr>
+            <th scope="col">Attribute</th>
+            <th scope="col">Min</th>
+            <th scope="col">MAX</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           
+            <td>radius (mean)</td>
+            <td>6.981</td>
+            <td>28.11</td>
+          </tr>
+          <tr>
+       
+            <td>texture (mean)</td>
+            <td>9.71</td>
+            <td>39.28</td>
+          </tr>
+          <tr>
+           
+            <td>area (mean)</td>
+            <td>143.5</td>
+            <td>2501.0</td>
+          </tr>
+          <tr>
+           
+            <td>perimeter (mean)</td>
+            <td>43.79</td>
+            <td>188.5</td>
+          </tr>
+          <tr>
+           
+            <td>smoothness (mean)</td>
+            <td>0.053</td>
+            <td> 0.163</td>
+          </tr>
+          <tr>
+           
+            <td>compactness (mean)</td>
+            <td>0.019</td>
+            <td>0.345</td>
+          </tr>
+          <tr>
+           
+            <td>concavity (mean)</td>
+            <td>0.0</td>
+            <td>0.427</td>
+          </tr>
+          <tr>
+           
+            <td>concave points (mean)</td>
+            <td>0.0</td>
+            <td>0.201</td>
+          </tr>
+          <tr>
+           
+            <td> symmetry   </td>
+            <td>0.106</td>
+            <td>0.304</td>
+          </tr>
+          <tr>
+           
+            <td>fractal dimension (mean)</td>
+            <td>0.05</td>
+            <td>0.097</td>
+          </tr>
+          <tr>
+           
+            <td> radius (standard error)</td>
+            <td>0.112</td>
+            <td>2.873</td>
+          </tr>
+          <tr>
+           
+            <td>texture (standard error)</td>
+            <td>0.36</td>
+            <td>4.885</td>
+          </tr>
+          <tr>
+           
+            <td>perimeter (standard error) </td>
+            <td>0.757</td>
+            <td>21.98</td>
+          </tr>
+          <tr>
+           
+            <td>area (standard error)</td>
+            <td>6.802</td>
+            <td>542.2</td>
+          </tr>
+          <tr>
+           
+            <td>smoothness (standard error)</td>
+            <td>0.002</td>
+            <td> 0.031</td>
+          </tr>
+          <tr>
+           
+            <td>compactness (standard error)</td>
+            <td>0.002</td>
+            <td>0.135</td>
+          </tr>
+          <tr>
+           
+            <td>concavity (standard error)</td>
+            <td>0.0</td>
+            <td>0.396</td>
+          </tr>
+          <tr>
+           
+            <td>concave points (standard error)</td>
+            <td>0.0</td>
+            <td>0.053</td>
+          </tr>
+          <tr>
+           
+            <td>symmetry (standard error)</td>
+            <td>0.008</td>
+            <td>0.079</td>
+          </tr>
+          <tr>
+           
+            <td>fractal dimension (standard error)</td>
+            <td>0.001</td>
+            <td>0.03</td>
+          </tr>
+          <tr>
+           
+            <td>radius (worst) </td>
+            <td>7.93</td>
+            <td> 36.04</td>
+          </tr>
+          <tr>
+           
+            <td>texture (worst)</td>
+            <td>12.02</td>
+            <td>49.54</td>
+          </tr>
+          <tr>
+           
+            <td>perimeter (worst)</td>
+            <td>50.41</td>
+            <td>251.2</td>
+          </tr>
+          <tr>
+           
+            <td>area (worst)</td>
+            <td>185.2</td>
+            <td>4254.0</td>
+          </tr>
+          <tr>
+           
+            <td>smoothness (worst)</td>
+            <td>0.071</td>
+            <td>0.223</td>
+          </tr>
+          <tr>
+           
+            <td>compactness (worst)</td>
+            <td>0.027</td>
+            <td> 1.058</td>
+          </tr>
+          <tr>
+           
+            <td>concavity (worst)</td>
+            <td>0.0</td>
+            <td>1.252</td>
+          </tr>
+          <tr>
+           
+            <td>concave points (worst)</td>
+            <td>0.0</td>
+            <td>0.291</td>
+          </tr>
+          <tr>
+           
+            <td>symmetry (worst) </td>
+            <td>0.156 </td>
+            <td>0.664</td>
+          </tr>
+          <tr>
+           
+            <td>fractal dimension (worst)</td>
+            <td>0.055</td>
+            <td>0.208</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+ 
+<div class="container mt-2">
+    <h4 class="text-dark">
+        Data Source
+    </h4>
+  <p class="text-dark">
+    This is a copy of UCI ML Breast Cancer Wisconsin (Diagnostic) datasets.
+    <a href="https://goo.gl/U2Uwz2" class="text-info">https://goo.gl/U2Uwz2</a>
+  </p>
+</div>
+<div class="container mt-2">
+    <h4 class="text-dark">
+        Other Information
+    </h4>
+  <p class="text-dark">
+    Features are computed from a digitized image of a fine needle
+    aspirate (FNA) of a breast mass.  They describe
+    characteristics of the cell nuclei present in the image.
+    
+    Separating plane described above was obtained using
+    Multisurface Method-Tree (MSM-T) [K. P. Bennett, "Decision Tree
+    Construction Via Linear Programming." Proceedings of the 4th
+    Midwest Artificial Intelligence and Cognitive Science Society,
+    pp. 97-101, 1992], a classification method which uses linear
+    programming to construct a decision tree.  Relevant features
+    were selected using an exhaustive search in the space of 1-4
+    features and 1-3 separating planes.
+    
+    The actual linear program used to obtain the separating plane
+    in the 3-dimensional space is that described in:
+    [K. P. Bennett and O. L. Mangasarian: "Robust Linear
+    Programming Discrimination of Two Linearly Inseparable Sets",
+    Optimization Methods and Software 1, 1992, 23-34].
+    
+  </p>
+</div>   
+{% include 'core/footer.html' %}
+{% endblock content %}
