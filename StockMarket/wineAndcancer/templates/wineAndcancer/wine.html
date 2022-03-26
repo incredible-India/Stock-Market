@@ -1,0 +1,352 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>Wine Quality</title>
+
+{% endblock title %}
+
+{% block content %}
+
+{% include 'core/nav.html' with title='Wine Quality' op='Market Prediction' op1='Cancer Prediction' opl='/' opl1='/cancer' %}
+
+
+<div class="container mt-2">
+
+          <img src="{% static 'wineAndcancer/img/w1.jpeg' %}" alt="" class="img-fluid mt-3 " style="width:100%; height:250px; " > 
+       
+</div>
+
+<div class="container mt-1">
+    <div class="row">
+        <div class="col-sm-6">
+           
+
+            <h3 class="tetx-dark bg-info" style='padding:20px;'>Four Indicators of Wine Quality</h3>
+            <h5 class="teax-dark">Complexity</h5>
+            <p class="text-dark">
+                <b>Higher quality wines are more complex in their flavor profile. They often have numerous layers that release flavors over time. Lower quality wines lack this complexity, having just one or two main notes that may or may not linger.</b>
+
+                <h5 class="teax-dark"> Balance</h5>
+                <p class="text-dark">
+                    <b>Wines that have good balance will be of higher quality than ones where one component stands out above the rest.
+
+                        The five components – acidity, tannins, sugar/sweetness, alcohol and fruit – need to be balanced. For wines that need several years of aging to reach maturity, this gives them the time they need to reach optimal balance.</b>
+
+                    <h5 class="teax-dark">Typicity</h5>
+                    <p class="text-dark">
+                        <b>Another indicator of wine quality comes from typicity, or how much the wine looks and tastes the way it should.
+
+                            For example, red Burgundy should have a certain appearance and taste, and it’s this combination that wine connoisseurs look for with each new vintage.</b>
+
+                        <h5 class="teax-dark">Intensity and Finish</h5>
+                        <p class="text-dark">
+                            <b>The final indicators of both white and red wine quality are the intensity and finish. High-quality wines will express intense flavors and a lingering finish, with flavors lasting after you’ve swallowed the wine. Flavors that disappear immediately can indicate that your wine is of moderate quality at best.</b>
+                            <br>
+                            <a href="#wine" class="text-info" style='text-decoration: none;'>Check Quality</a>
+        </div>
+
+        <div class="col-sm-6">
+            <h3 class="tetx-dark bg-info" style='padding:20px;'>Four Factors That Contribute to Wine Quality</h3>
+            <h4 class=" text-dark d4" style='font-style:italic;'>
+              <h5 class="teax-dark">Climate and Weather</h5>
+              <p class="text-dark">
+                  <b>The terroir of wine has a clear-cut influence on its quality. Climate and weather help determine how quickly wine grapes grow, how much flavor and juiciness they have, and how well those grapes can be turned into wine.</b>
+              </p>
+              <h5 class="teax-dark"> Temperature and Sunlight</h5>
+              <p class="text-dark">
+                  <b>To carry out photosynthesis, grape vines must be exposed to temperatures between 60 and 70 degrees Fahrenheit.
+
+                    In regions with average temperatures closer to 60 degrees F, short-cycle varieties will be successful but long-cycle ones won’t. If temperatures are too hot, though, the grapes will ripen too quickly – cutting short the time needed for flavor, color, and other compounds to fully develop.</b>
+              </p>
+
+              <h5 class="teax-dark"> Growing Practices</h5>
+              <p class="text-dark">
+                  <b>In addition to what the land and sky provide, the ways in which a producer manipulates the vines will also influence the quality of the resultant wine. Canopy management often includes removing extra leaves and shoots to increase sunlight exposure, while pruning removes select branches to control yields and keep vines healthy.</b>
+              </p>
+              <h5 class="teax-dark"> Winemaking Practices</h5>
+              <p class="text-dark">
+                  <b>The winemaking process is equally important in determining the final quality of the wine. Wineries follow four main steps when producing their wines, maceration, fermentation, extraction and aging, and they must ensure consistency to get the most from their grapes.</b>
+              </p>
+             
+            </h4>
+           
+        </div>
+    </div>
+</div>
+
+
+{% comment %} info about datasets {% endcomment %}
+
+<div class="container mt-2">
+   <div class="row mt-1">
+    <h4 class="text-dark bg-info" style='padding:20px;'>Wine Recognition Dataset</h4>
+       <div class="col-sm-6">
+      
+        <h5 class="text-dark mt-header">Attribute Information</h5>
+    
+        <ul>
+            <li>Alcohol</li>
+            <li>Malic acid</li>
+            <li>Ash</li>
+            <li>Alcalinity of ash</li>
+            <li>Magnesium</li>
+            <li>Total phenols</li>
+            <li>Flavanoids</li>
+            <li>Nonflavanoid phenols</li>
+            <li>Proanthocyanins</li>
+            <li>Color intensity</li>
+            <li>Hue</li>
+            <li>OD280/OD315 of diluted wines</li>
+            <li>Proline</li>
+        </ul>
+       </div>
+       <div class="col-sm-6">
+           <p class="text-dark">
+            The data is the results of a chemical analysis of wines grown in the same
+            region in Italy by three different cultivators. There are thirteen different
+            measurements taken for different constituents found in the three types of
+            wine.
+           </p>
+       </div>
+   </div>
+</div>
+
+<div class="container mt-1">
+  <p class="text-dark"> <b> Fill the following data to check for wine quality. You can take help from the table shown bellow.</b> <a href="#showdata" class="text-info" style='text-decoration: none;'>(See Data)</a></p>
+  <p class="text-dark"> <b>All the fileds are required <span class='text-danger'>*</span> </b></p>
+  <div class="container mt-2">
+      <a name='wine'></a>
+    <form action="" method="post">
+      {% csrf_token %}
+    <div class="row mt-1">
+     
+      <div class="col-sm-6">
+        <label for="alcohol">alcohol</label>
+        <input type="number" name="alcohol" id="alcohol" class="form-control" required step='any'>
+        <label for="malic_acid">malic acid</label>
+        <input type="number" name="malic_acid" id="malic_acid" class="form-control" required step='any'>
+        <label for="ash">ash</label>
+        <input type="number" name="ash" id="ash" class="form-control" required step='any'>
+        <label for="alcalinity_of_ash">alcalinity of ash</label>
+        <input type="number" name="alcalinity_of_ash" id="alcalinity_of_ash" class="form-control" required step='any'>
+        <label for="magnesium">magnesium</label>
+        <input type="number" name="magnesium" id="magnesium" class="form-control" required step='any'>
+        <label for="total_phenols">total_phenols</label>
+        <input type="number" name="total_phenols" id="total_phenols" class="form-control" required step='any'>
+        <label for="flavanoids">flavanoids</label>
+        <input type="number" name="flavanoids" id="flavanoids" class="form-control" required step='any'>
+     
+
+
+      </div>
+
+      <div class="col-sm-6">
+        <label for="nonflavanoid_phenols">nonflavanoid phenols</label>
+        <input type="number" name="nonflavanoid_phenols" id="nonflavanoid_phenols" class="form-control" required step='any'>
+        <label for="proanthocyanins">proanthocyanins</label>
+        <input type="number" name="proanthocyanins" id="proanthocyanins" class="form-control" required step='any'>
+        <label for="color_intensity">color intensity</label>
+        <input type="number" name="color_intensity" id="color_intensity" class="form-control" required step='any'>
+        <label for="hue">hue</label>
+        <input type="number" name="hue" id="hue" class="form-control" required step='any'>
+        <label for="od280/od315_of_diluted_wines">od280/od315 of diluted wines</label>
+        <input type="number" name="od280/od315_of_diluted_wines" id="od280/od315_of_diluted_wines" class="form-control" required step='any'>
+        <label for="proline">proline</label>
+        <input type="number" name="proline" id="proline" class="form-control" required step='any'>
+   
+
+
+      </div>
+
+     
+
+      <div class="container mt-2">
+        <hr class="text-info">
+        <input type="submit" value="Submit" class="btn btn-outline-info">
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<div class="container mt-2">
+  <a name='showdata'></a>
+    <h4 class="text-dark">
+        Summary Statistics
+    </h4>
+
+    <table class="table table-striped">
+        <thead class="bg-info">
+          <tr>
+            <th scope="col">Attribute</th>
+            <th scope="col">Min</th>
+            <th scope="col">MAX</th>
+            <th scope="col"> Mean</th>
+            <th scope="col">  SD</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           
+            <td>Alcohol</td>
+            <td>11.0</td>
+            <td>14.8</td>
+            <td>13.0</td>
+            <td>0.8</td>
+          </tr>
+          <tr>
+       
+            <td>Malic Acid</td>
+            <td>0.74</td>
+            <td>5.80</td>
+            <td>2.34</td>
+            <td>1.12</td>
+          </tr>
+          <tr>
+           
+            <td>Ash</td>
+            <td>1.36</td>
+            <td>3.23</td>
+            <td>2.36</td>
+            <td>0.27</td>
+          </tr>
+          <tr>
+           
+            <td>Alcalinity of Ash</td>
+            <td>10.6</td>
+            <td>30.0</td>
+            <td>19.5</td>
+            <td>3.3</td>
+          </tr>
+         
+          <tr>
+           
+            <td> Magnesium </td>
+            <td>70.0</td>
+            <td> 162.0</td>
+            <td> 99.7</td>
+            <td>14.3</td>
+          </tr>
+          <tr>
+           
+            <td>Total Phenols</td>
+            <td>0.98</td>
+            <td>3.88</td>
+            <td>2.29</td>
+            <td> 0.63</td>
+          </tr>
+          <tr>
+           
+            <td>Flavanoids </td>
+            <td>0.34</td>
+            <td>5.08</td>
+            <td>2.03</td>
+            <td>1.00</td>
+          </tr>
+          <tr>
+           
+            <td>Nonflavanoid Phenols</td>
+            <td> 0.13</td>
+            <td>0.66</td>
+            <td>0.36</td>
+            <td>0.12</td>
+          </tr>
+          <tr>
+           
+            <td> Proanthocyanins</td>
+            <td>0.41</td>
+            <td>3.58</td>
+            <td>1.59</td>
+            <td> 0.57</td>
+          </tr>
+          <tr>
+           
+            <td>Colour Intensity</td>
+            <td>1.3</td>
+            <td>13.0</td>
+            <td> 5.1</td>
+            <td>2.3</td>
+          </tr>
+          <tr>
+           
+            <td>Hue </td>
+            <td>0.48</td>
+            <td>1.71</td>
+            <td> 0.96</td>
+            <td> 0.23</td>
+          </tr>
+          <tr>
+           
+            <td>OD280/OD315 of diluted wines </td>
+            <td>1.27</td>
+            <td>4.00</td>
+            <td>2.61</td>
+            <td>0.71</td>
+          </tr>
+          <tr>
+           
+            <td>Proline</td>
+            <td>278</td>
+            <td>1680</td>
+            <td>746</td>
+            <td>315</td>
+          </tr>
+         
+        </tbody>
+      </table>
+</div>
+ 
+<div class="container mt-2">
+    <h4 class="text-dark">
+        Data Source
+    </h4>
+  <p class="text-dark">
+    Lichman, M. (2013). UCI Machine Learning Repository
+    . Irvine, CA: University of California,
+    School of Information and Computer Science. 
+  
+    <a href="https://archive.ics.uci.edu/ml" class="text-info">https://archive.ics.uci.edu/ml</a>
+  </p>
+</div>
+<div class="container mt-2">
+    <h4 class="text-dark">
+        Other Information
+    </h4>
+  <p class="text-dark">
+    (1) S. Aeberhard, D. Coomans and O. de Vel, 
+  Comparison of Classifiers in High Dimensional Settings, 
+  Tech. Rep. no. 92-02, (1992), Dept. of Computer Science and Dept. of  
+  Mathematics and Statistics, James Cook University of North Queensland. 
+  (Also submitted to Technometrics). 
+
+  The data was used with many others for comparing various 
+  classifiers. The classes are separable, though only RDA 
+  has achieved 100% correct classification. 
+  (RDA : 100%, QDA 99.4%, LDA 98.9%, 1NN 96.1% (z-transformed data)) 
+  (All results using the leave-one-out technique) 
+<hr>
+  (2) S. Aeberhard, D. Coomans and O. de Vel, 
+  "THE CLASSIFICATION PERFORMANCE OF RDA" 
+  Tech. Rep. no. 92-01, (1992), Dept. of Computer Science and Dept. of 
+  Mathematics and Statistics, James Cook University of North Queensland. 
+  (Also submitted to Journal of Chemometrics).
+    
+  </p>
+</div>   
+
+<div class="container mt-2">
+
+    <div class="row mt-2">
+        <div class="col-sm-6">
+            <img src="{% static 'wineAndcancer/img/a.png' %}" alt="" class="img-fluid mt-3 " style="width:100%; height:250px; " >
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'wineAndcancer/img/a2.jpg' %}" alt="" class="img-fluid mt-3 " style="width:100%; height:250px; " >
+        </div>
+    </div>
+    
+ 
+</div>
+{% include 'core/footer.html' %}
+{% endblock content %}

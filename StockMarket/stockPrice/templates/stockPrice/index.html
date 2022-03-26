@@ -9,7 +9,7 @@
 
 {% block content %} 
 
-{% include 'core/nav.html' with title='Stock Market' op='Cancer Prediction' op1='Wine Quality' opl='/cancer' %}
+{% include 'core/nav.html' with title='Stock Market' op='Cancer Prediction' op1='Wine Quality' opl='/cancer' opl1='/wine' %}
 
 <div class="container">
     <div class="mt-4 row  ">
@@ -218,7 +218,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Wine Quality</h5>
                   <p class="card-text">The five components – acidity, tannins, sugar/sweetness, alcohol and fruit – need to be balanced.</p>
-                  <a href="#" class="btn btn-info">Check </a>
+                  <a href="{% url 'cancer' %}" class="btn btn-info">Check </a>
                 </div>
               </div>
         </div>

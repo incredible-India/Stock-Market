@@ -1,0 +1,166 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>Wine Quality Result</title>
+
+{% endblock title %}
+
+
+{% block content %}
+{% include 'core/nav.html' with title='Wine Quality' op='Market Prediction' op1='Cancer Prediction' opl='/' opl1='/cancer' %}
+
+<div class="container mt-2">
+    <div class="row mt-1">
+        <div class="col-sm-6">
+
+          <h4 class="text-center text-dark bg-info">Result</h4>
+
+          <div class="h4 text-dark">Wine Quality Status  </div>
+
+          {% if data.quality <= 0  %}
+
+          <h5 class="text-dark bg-warning" style='padding: 20px;'> Class 0</h5>
+
+          {% elif data.quality <= 1 %}
+          <h5 class="text-dark bg-secondary" style='padding: 20px;'> Class 1</h5>
+
+          {% else %}
+          <h5 class="text-dark bg-success" style='padding: 20px;'>class 2</h5>
+          {% endif %}
+
+          <div class="container-mt-1">
+            <table class="table table-striped">
+              <thead class="bg-info">
+                <tr>
+                  <th scope="col">Attribute</th>
+                 
+                  <th scope="col">value</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>Machine value</td>
+                  <td>{{data.exactPrediction}}</td>
+                </tr>
+                <tr>
+                  <td>Machine Accuracy %</td>
+                  <td>{{data.exactAccuracy}}</td>
+                </tr>
+                </tbody>
+                </table>
+          </div>
+           
+
+        
+              <h4 class="text-center text-dark bg-info">Related Information</h4>
+              <table class="table table-striped">
+                <thead class="bg-info">
+                  <tr>
+                    <th scope="col">Value</th>
+                   
+                    <th scope="col">Meaning</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+  
+                  <tr>
+                    <td>Machine value = 0  or less than 0</td>
+                    <td>Class 0 category</td>
+                  </tr>
+                  <tr>
+                    <td>Machine value = 1 or grater than 1 but less than 2 </td>
+                    <td>Class 1 category</td>
+                  </tr>
+
+                  <tr>
+                    <td>Machine value = 2 or greater than 2</td>
+                    <td>Class 2 category</td>
+                  </tr>
+                  </tbody>
+                  </table>
+
+
+            
+
+            <p class="text-dark"><b>there are 3 classes (creatively named 'class_0', 'class_1', and 'class_2'). It's likely these correspond to some typical wine varietals like Pinot Noir, or Cabernet, or Merlot..</b></p>
+            <p class="text-dark"><b>According to the color, wine can be divided into three categories: <span class="bg-danger">red wine</span>, <span class="bg-dark text-white">white wine</span>, and <span style="background-color: pink">pink wine</span> . This is also the most common way to classify.</b></p>
+          
+            <div class="container mt-1">
+   
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <table class="table table-striped">
+                <thead class="bg-info">
+                  <tr>
+                    <th scope="col">Attribute</th>
+                   
+                    <th scope="col">Data</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for key,values in data.userdata.items %}
+                    <tr>
+           
+                        <td>{{key}}</td>
+                        <td>{{values}}</td>
+                       
+                      </tr>
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div id="chart_div" style="width: 400px; height: 120px; "> </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2">
+    <hr class="text-info conatibus" id="footer">
+    <p class="text-dark">
+        <b><span class="text-danger">Drinking alcohol</span> is associated with a risk of developing <span class="text-danger">health problems</span> such as <span class="text-danger">mental and behavioural disorders</span>, including alcohol dependence, major noncommunicable diseases such as <span class="text-danger">liver cirrhosis, some cancers </span> and <sapn class="text-danger">cardiovascular diseases</sapn>, as well as injuries resulting from <span class="text-danger">violence and road clashes and collisions</span>.</b>
+    </p>
+</div>
+
+{% include 'core/footer.html' %}
+{% endblock content %}
+{% block script %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['gauge']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Label', 'Value'],
+        ['Accuracy %', {{data.accuracy}}],
+        ['Value ', {{data.exactPrediction}}],
+   
+      
+      ]);
+
+      var options = {
+        width: 600, height: 120,
+        redFrom: 50, redTo: 60,
+        greenFrom: 78, greenTo: 100,
+        yellowFrom:60, yellowTo: 78,
+        minorTicks: 5
+      };
+
+      var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+
+
+
+    }
+</script>
+{% endblock script %}

@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', sp.index,name='Stock-home'),
     # routin for cancer prediction 
-    path('cancer/',wc.cancerPrediction.as_view(), name='cancer')
+    path('cancer/',wc.cancerPrediction.as_view(), name='cancer'),
+    path('wine/',wc.Wine.as_view(), name='wine')
 ]

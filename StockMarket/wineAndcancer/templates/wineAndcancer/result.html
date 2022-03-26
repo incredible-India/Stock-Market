@@ -1,0 +1,171 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>Cancer Prediction Result</title>
+
+{% endblock title %}
+
+
+{% block content %}
+{% include 'core/nav.html' with title='Cancer Prediction' op='Market Prediction' op1='Wine Quality' opl='/' %}
+
+<div class="container mt-2">
+    <div class="row mt-1">
+        <div class="col-sm-6">
+
+          <h4 class="text-center text-dark bg-info">Result</h4>
+
+          <div class="h4 text-dark">Cancer Status  </div>
+
+          {% if 0.5 < data.machineData < 1  %}
+
+          <h5 class="text-dark bg-warning" style='padding: 20px;'>{{data.status}}</h5>
+
+          {% elif data.machineData >= 1 %}
+          <h5 class="text-dark bg-danger" style='padding: 20px;'>{{data.status}}</h5>
+
+          {% else %}
+          <h5 class="text-dark bg-success" style='padding: 20px;'>{{data.status}}</h5>
+          {% endif %}
+
+          <div class="container-mt-1">
+            <table class="table table-striped">
+              <thead class="bg-info">
+                <tr>
+                  <th scope="col">Attribute</th>
+                 
+                  <th scope="col">value</th>
+                 
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr>
+                  <td>Machine value</td>
+                  <td>{{data.machineData}}</td>
+                </tr>
+                <tr>
+                  <td>Machine Accuracy %</td>
+                  <td>{{data.accuracy}}</td>
+                </tr>
+                </tbody>
+                </table>
+          </div>
+           
+
+        
+              <h4 class="text-center text-dark bg-info">Related Information</h4>
+              <table class="table table-striped">
+                <thead class="bg-info">
+                  <tr>
+                    <th scope="col">Value</th>
+                   
+                    <th scope="col">Meaning</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+  
+                  <tr>
+                    <td>Machine value = 0  or less than 0</td>
+                    <td>Benign</td>
+                  </tr>
+                  <tr>
+                    <td>Machine value = 1 or grater than 1 </td>
+                    <td>Malignant</td>
+                  </tr>
+
+                  <tr>
+                    <td>Machine value in btween 0.5 and 1 </td>
+                    <td>In between Malignant and Benign</td>
+                  </tr>
+                  </tbody>
+                  </table>
+
+
+            
+
+            <p class="text-dark"><b>1 means the cancer is malignant and 0 means benign. We can identify that out of the 569 persons, 357 are labeled as B (benign) and 212 as M (malignant).</b></p>
+            <div id="chart_div" style="width: 400px; height: 120px; "> </div>
+
+            <div class="container mt-1">
+   
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <table class="table table-striped">
+                <thead class="bg-info">
+                  <tr>
+                    <th scope="col">Attribute</th>
+                   
+                    <th scope="col">Data</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for key,values in userData.items %}
+                    <tr>
+           
+                        <td>{{key}}</td>
+                        <td>{{values}}</td>
+                       
+                      </tr>
+                    
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-1">
+  <div class="row">
+    <div class="col-sm-6">
+      <img src="{% static 'wineAndcancer/img/w.jpg' %}" alt="" class="img-fluid mt-3 " style="width:100%; height:250px; " > 
+    </div>
+
+    <div class="col-sm-6">
+  <p class="text-center mt-3">
+    <b>A strong woman knows she has strength enough for the journey, but a woman of strength knows it is in the journey where she will become strong.</b>
+  </p>
+    </div>
+  </div>
+</div>
+
+{% include 'core/footer.html' %}
+{% endblock content %}
+{% block script %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['gauge']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Label', 'Value'],
+        ['Accuracy %', {{data.roundOffAcc}}],
+        ['Value ', {{data.machineData}}],
+   
+      
+      ]);
+
+      var options = {
+        width: 600, height: 220,
+        redFrom: 50, redTo: 60,
+        greenFrom: 78, greenTo: 100,
+        yellowFrom:60, yellowTo: 78,
+        minorTicks: 5
+      };
+
+      var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+
+
+
+    }
+</script>
+{% endblock script %}

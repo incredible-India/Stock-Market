@@ -8,7 +8,7 @@
 
 {% block content %}
 
-{% include 'core/nav.html' with title='Cancer Prediction' op='Market Prediction' op1='Wine Quality' opl='/' %}
+{% include 'core/nav.html' with title='Cancer Prediction' op='Market Prediction' op1='Wine Quality' opl='/' opl1='/wine'%}
 
 
 <div class="container mt-2">
@@ -83,81 +83,83 @@ Its treatment depends on the stage of cancer. It may consist of chemotherapy, ra
 
 <div class="container mt-1">
   <p class="text-dark"> <b> Fill the following data to check for Braest Cancer. You can take help from the table shown bellow.</b> <a href="#showdata" class="text-info" style='text-decoration: none;'>(See Data)</a></p>
+  <p class="text-dark"> <b>All the fileds are required <span class='text-danger'>*</span> </b></p>
   <div class="container mt-2">
     <form action="" method="post">
+      {% csrf_token %}
     <div class="row mt-1">
      
       <div class="col-sm-4">
         <label for="mean_radius">mean radius</label>
-        <input type="number" name="mean_radius" id="mean_radius" class="form-control">
+        <input type="number" name="mean_radius" id="mean_radius" class="form-control" required step='any'>
         <label for="mean_texture">mean texture</label>
-        <input type="number" name="mean_texture" id="mean_texture" class="form-control">
+        <input type="number" name="mean_texture" id="mean_texture" class="form-control" required step='any'>
         <label for="mean_perimeter">mean perimeter</label>
-        <input type="number" name="mean_perimeter" id="mean_perimeter" class="form-control">
+        <input type="number" name="mean_perimeter" id="mean_perimeter" class="form-control" required step='any'>
         <label for="mean_area">mean area</label>
-        <input type="number" name="mean_area" id="mean_area" class="form-control">
+        <input type="number" name="mean_area" id="mean_area" class="form-control" required step='any'>
         <label for="mean_smoothness">mean smoothness</label>
-        <input type="number" name="mean_smoothness" id="mean_smoothness" class="form-control">
+        <input type="number" name="mean_smoothness" id="mean_smoothness" class="form-control" required step='any'>
         <label for="mean_compactness">mean compactness</label>
-        <input type="number" name="mean_compactness" id="mean_compactness" class="form-control">
+        <input type="number" name="mean_compactness" id="mean_compactness" class="form-control" required step='any'>
         <label for="mean_concavity">mean concavity</label>
-        <input type="number" name="mean_concavity" id="mean_concavity" class="form-control">
+        <input type="number" name="mean_concavity" id="mean_concavity" class="form-control" required step='any'>
         <label for="mean_concave_points">mean concave points</label>
-        <input type="number" name="mean_concave_points" id="mean_concave_points" class="form-control">
+        <input type="number" name="mean_concave_points" id="mean_concave_points" class="form-control" required step='any'>
         <label for="mean_symmetry">mean symmetry</label>
-        <input type="number" name="mean_symmetry" id="mean_symmetry" class="form-control">
+        <input type="number" name="mean_symmetry" id="mean_symmetry" class="form-control" required step='any'>
         <label for="mean_fractal_dimension">mean fractal dimension</label>
-        <input type="number" name="mean_fractal_dimension" id="mean_fractal_dimension" class="form-control">
+        <input type="number" name="mean_fractal_dimension" id="mean_fractal_dimension" class="form-control" required step='any'>
 
 
       </div>
 
       <div class="col-sm-4">
         <label for="radius_error">radius error</label>
-        <input type="number" name="radius_error" id="radius_error" class="form-control">
+        <input type="number" name="radius_error" id="radius_error" class="form-control" required step='any'>
         <label for="texture_error">texture error</label>
-        <input type="number" name="texture_error" id="texture_error" class="form-control">
+        <input type="number" name="texture_error" id="texture_error" class="form-control" required step='any'>
         <label for="perimeter_error">perimeter error</label>
-        <input type="number" name="perimeter_error" id="perimeter_error" class="form-control">
+        <input type="number" name="perimeter_error" id="perimeter_error" class="form-control" required step='any'>
         <label for="area_error">area error</label>
-        <input type="number" name="area_error" id="area_error" class="form-control">
+        <input type="number" name="area_error" id="area_error" class="form-control" required step='any'>
         <label for="smoothness_error">smoothness error</label>
-        <input type="number" name="smoothness_error" id="smoothness_error" class="form-control">
+        <input type="number" name="smoothness_error" id="smoothness_error" class="form-control" required step='any'>
         <label for="compactness_error">compactness error</label>
-        <input type="number" name="compactness_error" id="compactness_error" class="form-control">
+        <input type="number" name="compactness_error" id="compactness_error" class="form-control" required step='any'>
         <label for="concavity_error">concavity error</label>
-        <input type="number" name="concavity_error" id="concavity_error" class="form-control">
+        <input type="number" name="concavity_error" id="concavity_error" class="form-control" required step='any'>
         <label for="concave_points_error">concave points error</label>
-        <input type="number" name="concave_points_error" id="concave_points_error" class="form-control">
+        <input type="number" name="concave_points_error" id="concave_points_error" class="form-control" required step='any'>
         <label for="symmetry_error">symmetry error</label>
-        <input type="number" name="symmetry_error" id="symmetry_error" class="form-control">
+        <input type="number" name="symmetry_error" id="symmetry_error" class="form-control" required step='any'>
         <label for="fractal_dimension_error">fractal dimension error</label>
-        <input type="number" name="fractal_dimension_error" id="fractal_dimension_error" class="form-control">
+        <input type="number" name="fractal_dimension_error" id="fractal_dimension_error" class="form-control" required step='any'>
 
 
       </div>
 
       <div class="col-sm-4">
         <label for="worst_radius">worst radius</label>
-        <input type="number" name="worst_radius" id="worst_radius" class="form-control">
+        <input type="number" name="worst_radius" id="worst_radius" class="form-control" required step='any'>
         <label for="worst_texture">worst texture</label>
-        <input type="number" name="worst_texture" id="worst_texture" class="form-control">
+        <input type="number" name="worst_texture" id="worst_texture" class="form-control" required step='any'>
         <label for="worst_perimeter">worst perimeter</label>
-        <input type="number" name="worst_perimeter" id="worst_perimeter" class="form-control">
+        <input type="number" name="worst_perimeter" id="worst_perimeter" class="form-control" required step='any'>
         <label for="worst_area">worst area</label>
-        <input type="number" name="worst_area" id="worst_area" class="form-control">
+        <input type="number" name="worst_area" id="worst_area" class="form-control" required step='any'>
         <label for="worst_smoothness">worst smoothness</label>
-        <input type="number" name="worst_smoothness" id="worst_smoothness" class="form-control">
+        <input type="number" name="worst_smoothness" id="worst_smoothness" class="form-control" required step='any'>
         <label for="worst_compactness">worst compactness</label>
-        <input type="number" name="worst_compactness" id="worst_compactness" class="form-control">
+        <input type="number" name="worst_compactness" id="worst_compactness" class="form-control" required step='any'>
         <label for="worst_concavity">worst concavity</label>
-        <input type="number" name="worst_concavity" id="worst_concavity" class="form-control">
+        <input type="number" name="worst_concavity" id="worst_concavity" class="form-control" required step='any'>
         <label for="worst_concave_points">worst concave points</label>
-        <input type="number" name="worst_concave_points" id="worst_concave_points" class="form-control">
+        <input type="number" name="worst_concave_points" id="worst_concave_points" class="form-control" required step='any'>
         <label for="worst_symmetry">worst symmetry</label>
-        <input type="number" name="worst_symmetry" id="worst_symmetry" class="form-control">
+        <input type="number" name="worst_symmetry" id="worst_symmetry" class="form-control" required step='any'>
         <label for="worst_fractal_dimension">worst fractal dimension</label>
-        <input type="number" name="worst_fractal_dimension" id="worst_fractal_dimension" class="form-control">
+        <input type="number" name="worst_fractal_dimension" id="worst_fractal_dimension" class="form-control" required step='any'>
 
 
       </div>
@@ -200,16 +202,17 @@ Its treatment depends on the stage of cancer. It may consist of chemotherapy, ra
           </tr>
           <tr>
            
-            <td>area (mean)</td>
-            <td>143.5</td>
-            <td>2501.0</td>
-          </tr>
-          <tr>
-           
             <td>perimeter (mean)</td>
             <td>43.79</td>
             <td>188.5</td>
           </tr>
+          <tr>
+           
+            <td>area (mean)</td>
+            <td>143.5</td>
+            <td>2501.0</td>
+          </tr>
+         
           <tr>
            
             <td>smoothness (mean)</td>
