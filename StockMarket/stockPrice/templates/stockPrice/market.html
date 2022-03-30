@@ -1,0 +1,222 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}
+
+<title>Market Prediction</title>
+
+{% endblock title %}
+
+{% block content %}
+
+{% include 'core/nav.html' with title='Market Prediction' op='Cancer Prediction' op1='Wine Quality' opl='/cancer' opl1='/wine'%}
+
+
+<div class="mt-2 container">
+    <marquee behavior="scroll" direction="left" class="text-info">The prediction of data is based on computer algorithm. </marquee>
+</div>
+
+<div class="container mt-1">
+  <p class="text-dark"> <b> Fill the following data to check for High Price. You can take help from the table shown bellow.</b> <a href="#showdata" class="text-info" style='text-decoration: none;'>(See Data)</a></p>
+  <p class="text-dark"> <b>All the fileds are required <span class='text-danger'>*</span> </b></p>
+  <div class="container mt-2">
+    <form action="" method="post">
+      {% csrf_token %}
+    <div class="row mt-1">
+     
+      <div class="col-sm-4">
+        <label for="open">Open Price</label>
+        <input type="number" name="open" id="open" class="form-control" required step='any'>
+        
+        
+        <label for="shares">No.of Shares</label>
+        <input type="number" name="shares" id="shares" class="form-control" required step='any'>
+        
+
+      </div>
+
+     
+   
+
+      <div class="col-sm-4">
+        <label for="low">Low Price</label>
+        <input type="number" name="low" id="low" class="form-control" required step='any'>
+        <label for="close">Close Price</label>
+        <input type="number" name="close" id="close" class="form-control" required step='any'>
+
+      </div>
+
+      <div class="container mt-2">
+        <hr class="text-info">
+        <input type="submit" value="Check" class="btn btn-outline-info">
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+{% comment %} if getting result from server side {% endcomment %}
+    {% if result %}
+    <div class="container mt-3">
+      
+
+        <div class="row mt-1">
+
+            <div class="col-sm-6">
+                <h4 class="text-dark">
+                    Predicted Value 
+                </h4>
+                <table class="table table-striped mt-1">
+                    <thead class="bg-info">
+                      <tr>
+                        <th scope="col">Attribute</th>
+                       
+                        <th scope="col">Data</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                       
+                        <tr>
+               
+                            <td >High Price</td>
+                            <td >{{data}}</td>
+                           
+                          </tr>
+                          <tr>
+               
+                            <td>Accuracy %</td>
+                            <td>{{accuracy}}</td>
+                           
+                          </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-6">
+                <h4 class="text-dark">
+                    Given Data 
+                </h4>
+                <table class="table table-striped mt-1">
+                    <thead class="bg-info">
+                      <tr>
+                        <th scope="col">Attribute</th>
+                       
+                        <th scope="col">Data</th>
+                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for key,values in userdata.items %}
+                        <tr>
+               
+                            <td>{{key}}</td>
+                            <td>{{values}}</td>
+                           
+                          </tr>
+                        
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+          
+        </div>
+
+</div>
+<hr class="text-info">
+    {% endif %}
+{% comment %} -------------------------------------------------------------- {% endcomment %}
+<div class="container mt-2">
+  <a name='showdata'></a>
+    <h4 class="text-dark">
+        Company :RELIANCE CAPITAL LTD. 500111
+    </h4>
+
+    <table class="table table-striped">
+        <thead class="bg-info">
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Open Prcie</th>
+            <th scope="col">High price</th>
+            <th scope="col">Low price</th>
+            <th scope="col">Close price</th>
+            <th scope="col">No.of Shares</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+           
+            <td>30/03/2022</td>
+            <td>16.36</td>
+            <td>16.36</td>
+            <td>16.36</td>
+            <td>16.36</td>
+            <td>265736</td>
+          </tr>
+          <tr>
+       
+            <td>29/03/2022</td>
+            <td>15.59</td>
+            <td>15.59</td>
+            <td>15.59</td>
+            <td>15.59</td>
+            <td>83572</td>
+          </tr>
+          <tr>
+           
+            <td>28/03/2022</td>
+            <td>14.85</td>
+            <td>14.85</td>
+            <td>14.85</td>
+            <td>14.85</td>
+            <td>78665</td>
+          </tr>
+          <tr>
+           
+            <td>25/03/2022</td>
+            <td>13.9</td>
+            <td>14.58</td>
+            <td>13.9</td>
+            <td>14.15</td>
+            <td>795129</td>
+          </tr>
+         
+          <tr>
+           
+            <td>24/03/2022</td>
+            <td>13.7</td>
+            <td>14.1</td>
+            <td>13.62</td>
+            <td>13.89</td>
+            <td>607932</td>
+          </tr>
+        
+        </tbody>
+      </table>
+      <a href="./../../static/stockPrice/datasets/data.csv" class="mt-1 text-info">Download CSV</a>
+</div>
+ 
+<div class="container mt-2">
+    <h4 class="text-dark">
+        Data Source
+    </h4>
+  <p class="text-dark">
+   The data has been taken from BSE (Bombay Stock Exchange) 
+    <a href="https://goo.gl/U2Uwz2" class="text-info">https://www.bseindia.com/markets/equity/EQReports/StockPrcHistori.aspx?expandable=7&scripcode=532515&flag=sp&Submit=G</a>
+  </p>
+</div>
+
+<div class="container mt-2">
+    <h4 class="text-dark">
+        INVESTMENT RISKS
+    </h4>
+  <p class="text-dark">
+  
+There are risks associated with investing in securities. Investing in stocks, bonds, exchange traded funds, mutual funds, and money market funds involve risk of loss.  Loss of principal is possible. Some high risk investments may use leverage, which will accentuate gains & losses. Foreign investing involves special risks, including a greater volatility and political, economic and currency risks and differences in accounting methods.  A security’s or a firm’s past investment performance is not a guarantee or predictor of future investment performance.
+  </p>
+</div>
+ 
+{% include 'core/footer.html' %}
+{% endblock content %}
