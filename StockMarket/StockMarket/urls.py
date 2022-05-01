@@ -20,7 +20,7 @@ from wineAndcancer import views as wc
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', sp.index,name='Stock-home'),
-    path('/market/prediction', sp.market.as_view(),name='market'),
+    path('market/prediction', sp.market.as_view(),name='market'),
     # routin for cancer prediction 
     path('cancer/',wc.cancerPrediction.as_view(), name='cancer'),
     path('wine/',wc.Wine.as_view(), name='wine')

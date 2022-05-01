@@ -12,7 +12,7 @@
 
 
 <div class="mt-2 container">
-    <marquee behavior="scroll" direction="left" class="text-info">The prediction of data is based on computer algorithm. </marquee>
+    <marquee behavior="scroll" direction="left" class="text-info">The prediction of data is based on computer algorithm. The level of risk associated with a particular investment or asset class typically correlates with the level of return the investment might achieve. </marquee>
 </div>
 
 <div class="container mt-1">
@@ -21,27 +21,55 @@
   <div class="container mt-2">
     <form action="" method="post">
       {% csrf_token %}
+
+      <div class="row mt-2">
+        <div class="col-sm-6">
+          <label for="comp">Select Company</label>
+          <select name="comp" id="comps" class="form-control" value="{{companyCode}}">
+
+
+            <option value="500111">RELIANCE CAPITAL LTD. 500111</option>
+            <option value="500112">STATE BANK OF INDIA 500112</option>
+          
+      
+            
+            <option value="500820">ASIAN PAINTS LTD. 500820</option>
+            <option value="512599">ADANI ENTERPRISES LTD. 512599</option>
+            <option value="500180">HDFC Bank Ltd 500180</option>
+            <option value="532343">TVS MOTOR COMPANY LTD. 532343</option>
+            <option value="542830">Indian Railway Catering and Tourism Corporation Ltd 542830</option>
+            <option value="543320">Zomato Ltd 543320</option>
+            <option value="532371">TATA TELESERVICES (MAHARASHTRA) LTD. 532371</option>
+            <option value="540376">Avenue Supermarts Ltd 540376</option>
+
+          </select>
+        </div>
+      </div>
     <div class="row mt-1">
      
-      <div class="col-sm-4">
+
+
+      <div class="col-sm-6">
         <label for="open">Open Price</label>
         <input type="number" name="open" id="open" class="form-control" required step='any'>
         
-        
-        <label for="shares">No.of Shares</label>
-        <input type="number" name="shares" id="shares" class="form-control" required step='any'>
-        
+        <label for="close">Close Price</label>
+        <input type="number" name="close" id="close" class="form-control" required step='any'>
+    
 
       </div>
 
      
    
 
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <label for="low">Low Price</label>
         <input type="number" name="low" id="low" class="form-control" required step='any'>
-        <label for="close">Close Price</label>
-        <input type="number" name="close" id="close" class="form-control" required step='any'>
+     
+
+        <label for="shares">No.of Shares</label>
+        <input type="number" name="shares" id="shares" class="form-control" required step='any'>
+        
 
       </div>
 
@@ -56,7 +84,7 @@
 
 {% comment %} if getting result from server side {% endcomment %}
     {% if result %}
-    <div class="container mt-3">
+    <div class="container mt-3 ddd">
       
 
         <div class="row mt-1">
@@ -88,6 +116,14 @@
                             <td>{{accuracy}}</td>
                            
                           </tr>
+
+                          <tr>
+               
+                           
+                            <td>Company Name</td>
+                            <td> {{cc}} </td>
+                        
+                          </tr>
                     
                     </tbody>
                 </table>
@@ -95,7 +131,7 @@
 
             <div class="col-sm-6">
                 <h4 class="text-dark">
-                    Given Data 
+                    Given Data (<span class="Ccode">{{companyCode}}</span>)
                 </h4>
                 <table class="table table-striped mt-1">
                     <thead class="bg-info">
@@ -124,13 +160,33 @@
         </div>
 
 </div>
+
+
+
+
+
+ {% comment %} graph {% endcomment %}
+<div class="container graph">
+
+  <div class="text-dark text-center">{{cc}}</div>
+  <canvas id="myChart" width="400px" height="100px"></canvas>
+</div>
+
 <hr class="text-info">
     {% endif %}
+
+
+
+
+
+    
 {% comment %} -------------------------------------------------------------- {% endcomment %}
 <div class="container mt-2">
   <a name='showdata'></a>
-    <h4 class="text-dark">
-        Company :RELIANCE CAPITAL LTD. 500111
+  
+  <div class="datainsidetable">
+    <h4 class="text-dark mt-2 cnames" >
+      RELIANCE CAPITAL LTD. 500111
     </h4>
 
     <table class="table table-striped">
@@ -145,7 +201,7 @@
            
           </tr>
         </thead>
-        <tbody>
+        <tbody class='tablebody'>
           <tr>
            
             <td>30/03/2022</td>
@@ -196,6 +252,7 @@
         </tbody>
       </table>
       <a href="./../../static/stockPrice/datasets/data.csv" class="mt-1 text-info">Download CSV</a>
+  </div>
 </div>
  
 <div class="container mt-2">
@@ -204,7 +261,7 @@
     </h4>
   <p class="text-dark">
    The data has been taken from BSE (Bombay Stock Exchange) 
-    <a href="https://goo.gl/U2Uwz2" class="text-info">https://www.bseindia.com/markets/equity/EQReports/StockPrcHistori.aspx?expandable=7&scripcode=532515&flag=sp&Submit=G</a>
+    <a href="https://www.bseindia.com/markets/equity/EQReports/StockPrcHistori.aspx?expandable=7&scripcode=532515&flag=sp&Submit=G" class="text-info" target="blank">https://www.bseindia.com/markets/equity/EQReports/StockPrcHistori.aspx?expandable=7&scripcode=532515&flag=sp&Submit=G</a>
   </p>
 </div>
 
@@ -217,6 +274,53 @@
 There are risks associated with investing in securities. Investing in stocks, bonds, exchange traded funds, mutual funds, and money market funds involve risk of loss.  Loss of principal is possible. Some high risk investments may use leverage, which will accentuate gains & losses. Foreign investing involves special risks, including a greater volatility and political, economic and currency risks and differences in accounting methods.  A security’s or a firm’s past investment performance is not a guarantee or predictor of future investment performance.
   </p>
 </div>
- 
+
 {% include 'core/footer.html' %}
+
 {% endblock content %}
+
+{% block script %}
+
+ <script src="{% static 'stockPrice/js/prediction.js' %}"></script>
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
+   //line,bar,scatter,donought,area,polarArea,radar
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: ['Open Price', 'Low price', 'High Price', 'Close'],
+          datasets: [{
+              label: {{userdata.shares}} + ' ( No of shares )',
+              data: [{{userdata.open}}, {{userdata.low}}, {{data}}, {{userdata.close}}],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.1)',
+                  'rgba(54, 162, 235, 0.1)',
+                  'rgba(255, 206, 86, 0.1)',
+                  'rgba(75, 192, 192, 0.1)',
+                  'rgba(153, 102, 255, 0.1)',
+              
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+ </script>
+
+{% endblock script %}
